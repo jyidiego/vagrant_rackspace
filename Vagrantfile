@@ -5,11 +5,12 @@
 # you comment out:
 # Defaults requiretty
 # Defaults !visiblepw
+# in /etc/sudoers with the visudo
 #
 
 Vagrant.configure("2") do |config|
   config.vm.box = "dummy"
-  config.ssh.private_key_path = "~/.ssh/id_rsa"
+  config.ssh.private_key_path = "~/.ssh/id_rsa" # private ssh key to ssh into created server
   config.vm.provision "shell", path: "rax_workstation.sh"
   config.vm.provider :rackspace do |rs|
     rs.username = ENV['RAX_USERNAME']
@@ -17,7 +18,7 @@ Vagrant.configure("2") do |config|
     rs.flavor   = /1 GB Performance/
     rs.image    = /Ubuntu 12.10/
     rs.server_name = "rax_vagrant_#{Time.now.strftime("%Y%m%d-%H%M%S")}"
-    rs.public_key_path = "~/.ssh/id_rsa.pub"
+    rs.public_key_path = "~/.ssh/id_rsa.pub" # register public ssh key using nova
     rs.rackspace_region = :iad
   end
 end
