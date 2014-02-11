@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
     rs.api_key  = ENV['RAX_API_KEY']
     rs.flavor   = /1 GB Performance/
     rs.image    = /Ubuntu 12.10/
-    rs.server_name = "rax_vagrant_#{Time.now.strftime("%Y%m%d-%H%M%S")}"
+    rs.server_name = "rax_workstation_#{Time.now.strftime("%Y%m%d-%H%M%S")}"
     rs.public_key_path = "~/.ssh/id_rsa.pub" # register public ssh key using nova
     rs.rackspace_region = :iad
   end
